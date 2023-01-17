@@ -1,0 +1,22 @@
+const mongoose = require('mongoose');
+
+require('dotenv').config();
+
+const ServerApiVersion  = require('mongoose');
+
+async function connect() {
+    try {
+        // const url = 'mongodb://localhost:27017/BillManage';
+        const url = 'mongodb+srv://ngocminh:Minh1805701@cluster0.31wphgu.mongodb.net/?retryWrites=true&w=majority'
+        await mongoose.connect(url, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            serverApi: ServerApiVersion.v1,
+        });
+        console.log('Connect successfully!!!');
+    } catch (error) {
+        console.log('Connect failure!!!');
+    }
+}
+
+module.exports = { connect };
