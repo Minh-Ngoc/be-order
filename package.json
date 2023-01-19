@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "beautiful": "lint-staged",
-    "start": "nodemon --inspect src/index.js",
+    "start": "netlify-lambda serve src",
+    "build": "netlify-lambda build src",
     "start:dev": "nodemon --inspect src/index.js",
     "watch": "node-sass --watch src/resources/scss/ --output src/public/css/",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -36,6 +37,7 @@
     "mongoose": "^6.6.5",
     "mongoose-delete": "^0.5.4",
     "mongoose-slug-generator": "^1.0.4",
+    "netlify-lambda": "^2.0.15",
     "nodemon": "^2.0.20",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",

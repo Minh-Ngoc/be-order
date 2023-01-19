@@ -1,4 +1,5 @@
 const SanPham = require('../models/SanPham');
+const { mongooseToObject, mutipleMongooseToObject } = require('../../util/mongoose');
 
 class SanPhamController {
 
@@ -36,6 +37,7 @@ class SanPhamController {
                     err
                 })
             })
+
     }
 
     edit(req, res, next) {
