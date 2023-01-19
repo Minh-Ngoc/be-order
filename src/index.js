@@ -14,9 +14,14 @@ const db = require('./config/db');
 
 const app = express();
 
-app.use(cors({
-    origin: '*'
-}));
+app.use(
+    cors({
+      origin: ["https://client-order.netlify.app"],
+      methods: ["GET", "POST", "PUT", "DELETE"],
+      credentials: true,
+      origin: true,
+    })
+  );
 
 app.use(express.json());
 // Connect to DB
