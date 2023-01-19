@@ -15,11 +15,7 @@ const db = require('./config/db');
 const app = express();
 
 app.use(
-    cors({
-        origin:'*', 
-        credentials:true,            //access-control-allow-credentials:true
-        optionSuccessStatus:200,
-    })
+    cors()
   );
 
 app.use(express.json());
@@ -28,12 +24,13 @@ app.use(express.json());
 db.connect();
 
 // Curb Cores Error by adding a header here
-app.use(function(req, res, next) {
-    header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
-    header('Access-Control-Allow-Headers: Origin, Content-Type, Accept, Authorization, X-Request-With');
-    next();
-})
+app.use(function (req, res, next) {
+    //Enabling CORS
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
+      next();
+    });
 
 
 
