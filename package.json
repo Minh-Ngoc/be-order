@@ -6,6 +6,7 @@
   "scripts": {
     "beautiful": "lint-staged",
     "start": "nodemon --inspect src/index.js",
+    "build": "netlify-lambda build src/index.js",
     "postinstall": "netlify-lambda install",
     "start:dev": "nodemon --inspect src/index.js",
     "watch": "node-sass --watch src/resources/scss/ --output src/public/css/",
