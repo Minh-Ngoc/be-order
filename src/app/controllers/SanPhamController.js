@@ -1,5 +1,4 @@
 const SanPham = require('../models/SanPham');
-const { mongooseToObject, mutipleMongooseToObject } = require('../../util/mongoose');
 
 class SanPhamController {
 
@@ -9,7 +8,7 @@ class SanPhamController {
         sanpham
             .save()
             .then(() => {
-                return res.status(201).send({
+                return res.json({
                     errCode: 201,
                 })
             })
@@ -26,18 +25,17 @@ class SanPhamController {
         SanPham.find({})
             .then(sanphams => {
                 // console.log(sanphams);
-                return res.json({
+                return res.status(200).send({
                     errCode: 200,
                     sanpham: sanphams
                 })
             })
             .catch(err => {
-                return res.json({
+                return res.status(500).send({
                     erCode: 500,
                     err
                 })
             })
-
     }
 
     edit(req, res, next) {

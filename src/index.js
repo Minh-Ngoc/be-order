@@ -13,14 +13,12 @@ const route = require('./routes');
 const db = require('./config/db');
 
 const app = express();
-const router = express.Router();
-const serverless = require("serverless-http");
 
 app.use(
     cors()
   );
 
-app.use(express());
+app.use(express.json());
 // Connect to DB
 
 db.connect();
@@ -36,7 +34,7 @@ app.use(function (req, res, next) {
 
 
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 // Use static folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -80,24 +78,13 @@ app.engine(
         },
     }),
 );
-
-router.get("/", (req, res) => {
-    res.json({
-      hello: "hi!"
-    });
-  });
-  
-  app.use(`/.netlify/functions/api`, router);
-  
-module.exports = app;
-module.exports.handler = serverless(app);
-// app.set('view engine', 'hbs');
-// app.set('views', path.join(__dirname, 'resources', 'views'));
+app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, 'resources', 'views'));
 
 // Routes init
-// route(app);
+route(app);
 
-// app.listen(port, () =>
-//     console.log(`App listening at http://localhost:${port}`),
-// );
+app.listen(port, () =>
+    console.log(`App listening at http://localhost:${port}`),
+);
 
