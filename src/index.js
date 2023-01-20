@@ -1,4 +1,5 @@
 require('dotenv').config({path: __dirname + '/.env' })
+const serverless = require("serverless-http");
 
 const path = require('path');
 const express = require('express');
@@ -87,3 +88,4 @@ route(app);
 app.listen(port, () =>
     console.log(`App listening at http://localhost:${port}`),
 );
+

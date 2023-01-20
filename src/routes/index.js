@@ -1,6 +1,7 @@
 const taikhoanRouter = require('./taikhoan');
 const sanphamRouter = require('./sanpham');
 const orderRouter = require('./order');
+
 const serverless = require("serverless-http");
 
 
@@ -14,4 +15,6 @@ function route(app) {
 
 
 module.exports = route;
+
 module.exports.handler = serverless(route);
+
