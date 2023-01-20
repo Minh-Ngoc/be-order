@@ -2,12 +2,9 @@ require('dotenv').config({path: __dirname + '/.env' })
 
 const path = require('path');
 const express = require('express');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const methodOverride = require('method-override');
-const handlebars = require('express-handlebars');
-const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 const cors = require('cors');
-const hdb = require('handlebars');
 
 const route = require('./routes');
 const db = require('./config/db');
@@ -29,8 +26,8 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
-      next();
-    });
+    next();
+});
 
 
 
@@ -50,36 +47,6 @@ app.use(methodOverride('_method'));
 // app.use(morgan('combined'));
 
 // Template engine
-app.engine(
-    'hbs',
-    handlebars.engine({
-        extname: '.hbs',
-        handlebars: allowInsecurePrototypeAccess(hdb),
-        helpers: {
-            sum: (a, b) => a + b,
-            
-            checkQR: (qr, id) => {
-                if(!qr) {
-                    return new hdb.SafeString(`<form action="/dotnuoi/`+ id +`?_method=PUT" method="POST">
-                                                <button class="btn btn-primary">Cấp mã</button>
-                                            </form>`)
-                } else {
-                    return new hdb.SafeString("<span>Đã cấp mã</span>");
-                }
-            },
-            checkImage: image => {
-                if(!image) {
-                    return new hdb.SafeString("<span>Chưa cấp mã QR</span>");
-                } else {
-                    return new hdb.SafeString(`<img style="width: 100px;" src="`+ image +`" class="img-thumbnail" alt="...">`)
-                }
-            }, 
-            
-        },
-    }),
-);
-app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'resources', 'views'));
 
 // Routes init
 route(app);
@@ -88,37 +55,3 @@ app.listen(port, () =>
     console.log(`App listening at http://localhost:${port}`),
 );
 
-const welcomeMessage = (req, res) => {
-    res.send(` 
-    <head>
-        <title>Server On! ✅</title> 
-        <link rel="icon" href="/fav.ico">
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
-            body {
-                text-align       : center;
-                background-color : #eee;
-            }
-            h1{
-                width         : max-content;
-                margin        : 40px auto 00px; 
-                padding       : 20px 30px 24px;
-                font-family   : 'Nunito', sans-serif;
-                font-size     : 42px;
-                color         : #111;
-                border        : 1px solid black;
-                border-radius : 3px;
-            }
-            img{
-                width  : 750px;
-                height : 750px;
-            }
-        </style>
-    </head>
-    <body>
-        <h1> Memories App - Server is running... ✅ </h1>
-        <img src='server.png'/>
-    </body>
-    `);
-}
-app.get('/', welcomeMessage);
