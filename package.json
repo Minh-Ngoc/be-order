@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "beautiful": "lint-staged",
-    "start": "NODE_ENV=development ./node_modules/.bin/netlify-lambda serve src",
-    "build": "NODE_ENV=production ./node_modules/.bin/netlify-lambda build src",
+    "start": "nodemon --inspect src/index.js",
     "start:dev": "nodemon --inspect src/index.js",
     "watch": "node-sass --watch src/resources/scss/ --output src/public/css/",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -42,8 +41,7 @@
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^7.1.2",
-    "qrcode": "^1.5.1",
-    "serverless-http": "^3.1.1"
+    "qrcode": "^1.5.1"
   },
   "devDependencies": {
     "handlebars": "^4.7.7",

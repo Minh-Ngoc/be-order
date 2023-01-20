@@ -15,7 +15,7 @@ app.use(
     cors()
   );
 
-app.use(express.json());
+app.use(express);
 // Connect to DB
 
 db.connect();
@@ -55,3 +55,13 @@ app.listen(port, () =>
     console.log(`App listening at http://localhost:${port}`),
 );
 
+// modern JS style - encouraged
+// exports.handler = function(event, context, callback) {
+// // your server-side functionality
+// callback(null, {
+//   statusCode: 200,
+//   body: JSON.stringify({
+//     message: `Hello world ${Math.floor(Math.random() * 10)}`
+//   })
+// });
+// };

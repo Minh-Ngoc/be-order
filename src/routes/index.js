@@ -8,6 +8,7 @@ function route(app) {
     app.use('/taikhoan', taikhoanRouter);
     app.use('/sanpham', sanphamRouter);
     app.use('/order', orderRouter);
+    app.use('/', (req, res, next) => res.send('hello worl'));
 
 }
 
