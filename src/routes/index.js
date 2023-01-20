@@ -6,11 +6,9 @@ const serverless = require("serverless-http");
 
 
 function route(app) {
-
     app.use('/taikhoan', taikhoanRouter);
-    app.use(`/.netlify/functions/api/sanpham`, sanphamRouter);
-    app.use(`/.netlify/functions/api/order`, orderRouter);
-
+    app.use(`/.netlify/functions/index/sanpham`, sanphamRouter);
+    app.use(`/.netlify/functions/index/order`, orderRouter);
 }
 
 
