@@ -7,7 +7,7 @@ const ServerApiVersion  = require('mongoose');
 async function connect() {
     try {
         // const url = 'mongodb://localhost:27017/BillManage';
-        const url = 'mongodb+srv://ngocminh:Minh1805701@cluster0.31wphgu.mongodb.net/?retryWrites=true&w=majority'
+        const url = 'mongodb+srv://ngocminh101100:Minh1805701@cluster0.7kdyflp.mongodb.net/?retryWrites=true&w=majority'
         await mongoose.connect(url, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
