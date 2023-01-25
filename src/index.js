@@ -36,7 +36,7 @@ app.use(function (req, res, next) {
 const port = process.env.PORT || 3001;
 
 // Use static folder
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(
     express.urlencoded({
@@ -67,16 +67,5 @@ app.listen(port, () =>
     console.log(`App listening at http://localhost:${port}`),
 );
 
-const handler = async function(event, context) {
-    console.log("Received event:", event);
-
-    return {
-        statusCode: 200,
-    };
-};
-
-// module.exports.handler = schedule("@hourly", handler);
-
-// Export the app and the serverless function
 module.exports = app;
 module.exports.handler = serverless(app);
