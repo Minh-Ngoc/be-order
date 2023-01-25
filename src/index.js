@@ -9,6 +9,10 @@ const cors = require('cors');
 const route = require('./routes');
 const db = require('./config/db');
 
+const serverless = require("serverless-http");
+// const { schedule } = require("@netlify/functions");
+const router = express.Router();
+
 const app = express();
 
 app.use(
@@ -29,8 +33,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-
-
 const port = process.env.PORT || 3001;
 
 // Use static folder
@@ -49,19 +51,32 @@ app.use(methodOverride('_method'));
 // Template engine
 
 // Routes init
+// Define a route that responds with a JSON object when a GET request is made to the root path
+router.get("/", (req, res) => {
+    res.json({
+      hello: "hi!"
+    });
+  });
+  
+// Use the router to handle requests to the `/.netlify/functions/api` path
+app.use(`/.netlify/functions/index`, router);
+
 route(app);
 
 app.listen(port, () =>
     console.log(`App listening at http://localhost:${port}`),
 );
 
-// modern JS style - encouraged
-// exports.handler = function(event, context, callback) {
-// // your server-side functionality
-// callback(null, {
-//   statusCode: 200,
-//   body: JSON.stringify({
-//     message: `Hello world ${Math.floor(Math.random() * 10)}`
-//   })
-// });
-// };
+const handler = async function(event, context) {
+    console.log("Received event:", event);
+
+    return {
+        statusCode: 200,
+    };
+};
+
+// module.exports.handler = schedule("@hourly", handler);
+
+// Export the app and the serverless function
+module.exports = app;
+module.exports.handler = serverless(app);
