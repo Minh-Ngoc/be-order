@@ -10,7 +10,7 @@ const route = require('./routes');
 const db = require('./config/db');
 
 const serverless = require("serverless-http");
-// const { schedule } = require("@netlify/functions");
+
 const router = express.Router();
 
 const app = express();
