@@ -18,5 +18,6 @@ async function connect() {
         console.log('Connect failure!!!');
     }
 }
+mongoose.disconnect();
 
 module.exports = { connect };
