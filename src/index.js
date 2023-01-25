@@ -56,16 +56,16 @@ router.get("/", (req, res) => {
     res.json({
       hello: "hi!"
     });
-  });
+});
   
 // Use the router to handle requests to the `/.netlify/functions/api` path
 app.use(`/.netlify/functions/index`, router);
 
 route(app);
 
-app.listen(port, () =>
-    console.log(`App listening at http://localhost:${port}`),
-);
+// app.listen(port, () =>
+//     console.log(`App listening at http://localhost:${port}`),
+// );
 
 module.exports = app;
 module.exports.handler = serverless(app);
