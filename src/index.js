@@ -4,12 +4,10 @@ const express = require('express');
 const methodOverride = require('method-override');
 const cors = require('cors');
 
-const route = require('./routes');
-const db = require('./config/db');
-
 const serverless = require("serverless-http");
 
-const router = express.Router();
+const route = require('./routes');
+const db = require('./config/db');
 
 const app = express();
 
@@ -40,20 +38,7 @@ app.use(
 );
 app.use(methodOverride('_method'));
 
-router.get("/", (req, res) => {
-    res.json({
-      hello: "hi!"
-    });
-});
-  
-// Use the router to handle requests to the `/.netlify/functions/api` path
-app.use(`/.netlify/functions/index`, router);
-
-// route(app);
-
-// app.listen(port, () =>
-//     console.log(`App listening at http://localhost:${port}`),
-// );
+route(app);
 
 module.exports = app;
 module.exports.handler = serverless(app);
