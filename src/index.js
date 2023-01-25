@@ -1,6 +1,4 @@
-require('dotenv').config({path: __dirname + '/.env' })
 
-const path = require('path');
 const express = require('express');
 // const morgan = require('morgan');
 const methodOverride = require('method-override');
@@ -33,10 +31,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-const port = process.env.PORT || 3001;
-
-// Use static folder
-// app.use(express.static(path.join(__dirname, 'public')));
+// const port = process.env.PORT || 3001;
 
 app.use(
     express.urlencoded({
@@ -45,13 +40,6 @@ app.use(
 );
 app.use(methodOverride('_method'));
 
-// HTTP logger
-// app.use(morgan('combined'));
-
-// Template engine
-
-// Routes init
-// Define a route that responds with a JSON object when a GET request is made to the root path
 router.get("/", (req, res) => {
     res.json({
       hello: "hi!"
@@ -61,7 +49,7 @@ router.get("/", (req, res) => {
 // Use the router to handle requests to the `/.netlify/functions/api` path
 app.use(`/.netlify/functions/index`, router);
 
-route(app);
+// route(app);
 
 // app.listen(port, () =>
 //     console.log(`App listening at http://localhost:${port}`),
