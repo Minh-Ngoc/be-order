@@ -41,6 +41,14 @@ app.use(methodOverride('_method'));
 route(app);
 
 module.exports = app;
-module.exports.handler = async (event, context) => {
+module.exports.handler = async (event) => {
     serverless(app);
-}
+    let response = {
+        statusCode: '500',
+        body: JSON.stringify({ error: 'error' }),
+        headers: {
+          'Content-Type': 'application/json',
+        }
+    };
+      return response;
+};
