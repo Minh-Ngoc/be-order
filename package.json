@@ -23,7 +23,6 @@
   },
   "dependencies": {
     "@handlebars/allow-prototype-access": "^1.0.5",
-    "@netlify/functions": "^1.4.0",
     "argon2": "^0.30.2",
     "bcrypt": "^5.1.0",
     "bootstrap": "^5.2.2",
