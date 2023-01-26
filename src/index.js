@@ -18,7 +18,7 @@ app.use(
 app.use(express);
 // Connect to DB
 
-// db.connect();
+db.connect();
 
 // Curb Cores Error by adding a header here
 app.use(function (req, res, next) {
@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
 
 app.use(
     express.urlencoded({
-        extended: true,
+        extended: false,
     }),
 );
 app.use(methodOverride('_method'));
@@ -41,6 +41,5 @@ app.use(methodOverride('_method'));
 route(app);
 
 module.exports = app;
-module.exports.handler = async (event) => {
-    return serverless(app);
-};
+
+module.exports.handler = serverless(app);
