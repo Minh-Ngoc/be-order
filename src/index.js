@@ -41,4 +41,6 @@ app.use(methodOverride('_method'));
 route(app);
 
 module.exports = app;
-module.exports.handler = serverless(app);
+module.exports.handler = async (event, context) => {
+    serverless(app);
+}
