@@ -31,11 +31,11 @@ app.use(function (req, res, next) {
 
 // const port = process.env.PORT || 3001;
 
-// app.use(
-//     express.urlencoded({
-//         extended: true,
-//     }),
-// );
+app.use(
+    express.urlencoded({
+        extended: true,
+    }),
+);
 app.use(methodOverride('_method'));
 
 route(app);
