@@ -17,8 +17,7 @@ const connect = async (e) => {
         //     useUnifiedTopology: true,
         //     serverApi: ServerApiVersion.v1,
         // });
-        conn.getClient(); // MongoClient { ... }
-        conn.readyState; // 1, means 'CONNECTED'
+        conn.readyState(1); // 1, means 'CONNECTED'
 
         console.log('Connect successfully!!!');
     } catch (error) {
