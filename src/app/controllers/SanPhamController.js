@@ -25,7 +25,7 @@ class SanPhamController {
         SanPham.find({})
             .then(sanphams => {
                 // console.log(sanphams);
-                return res.json({
+                return res.status(200).send({
                     errCode: 200,
                     sanpham: sanphams
                 })
