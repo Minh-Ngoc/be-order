@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
 
 app.use(
     express.urlencoded({
-        extended: true,
+        extended: false,
     }),
 );
 app.use(methodOverride('_method'));

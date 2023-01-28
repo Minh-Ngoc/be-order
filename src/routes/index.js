@@ -17,7 +17,7 @@ function route(app) {
       });
     }));
 
-    app.use(router.get("/", (req, res) => {
+    app.use('/', router.get("/", (req, res) => {
       res.json({
         hello: "hi!"
       });
