@@ -1,14 +1,14 @@
-const mongoose = require('mongoose');
-
 require('dotenv').config();
 
+const mongoose = require('mongoose');
 const ServerApiVersion  = require('mongoose');
 
-async function connect() {
+const URI = 'mongodb+srv://ngocminh:Minh1805701@cluster0.31wphgu.mongodb.net/?retryWrites=true&w=majority';
+
+const connect = async (e) => {
     try {
-        // const url = 'mongodb://localhost:27017/BillManage';
-        const url = 'mongodb+srv://ngocminh:Minh1805701@cluster0.31wphgu.mongodb.net/?retryWrites=true&w=majority'
-        await mongoose.connect(url, {
+        // const URI = 'mongodb://localhost:27017/BillManage';
+        mongoose.connect(await URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             serverApi: ServerApiVersion.v1,
