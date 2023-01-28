@@ -18,7 +18,7 @@ app.use(
 // app.use(express);
 // Connect to DB
 
-// db.connect();
+db.connect();
 
 // Curb Cores Error by adding a header here
 // app.use(function (req, res, next) {
