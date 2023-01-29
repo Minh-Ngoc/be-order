@@ -8,8 +8,6 @@ const serverless = require("serverless-http");
 
 const route = require('./routes');
 const db = require('./config/db');
-const mongoose = require('mongoose');
-const ServerApiVersion  = require('mongoose');
 
 const app = express();
 
@@ -20,25 +18,7 @@ app.use(
 // app.use(express);
 // Connect to DB
 
-// db.connect();
-const URI = 'mongodb+srv://ngocminh:Minh1805701@cluster0.31wphgu.mongodb.net/?retryWrites=true&w=majority';
-
-const connect = async (e) => {
-    try {
-        // const URI = 'mongodb://localhost:27017/BillManage';
-        mongoose.connect(await URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            serverApi: ServerApiVersion.v1,
-        });
-        
-        console.log('Connect successfully!!!');
-    } catch (error) {
-        console.log('Connect failure!!!');
-    }
-}
-
-connect();
+db.connect();
 
 // Curb Cores Error by adding a header here
 app.use(function (req, res, next) {

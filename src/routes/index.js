@@ -7,7 +7,23 @@ const sanphamRouter = require('./sanpham');
 const orderRouter = require('./order');
 
 function route(app) {
-    app.use(router.get('/sanpham/list', SanPhamController.list));
+    app.use(router.get('/sanpham/list', (req, res, next) => {
+      SanPham.find({})
+          .then(sanphams => {
+              // console.log(sanphams);
+              return res.json({
+                  errCode: 200,
+                  sanpham: sanphams
+              })
+          })
+          .catch(err => {
+              return res.status(500).send({
+                  erCode: 500,
+                  err
+              })
+          })
+        })
+      );
     app.use(sanphamRouter);
     app.use(orderRouter);
 
