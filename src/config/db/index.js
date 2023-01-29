@@ -7,6 +7,8 @@ const mongodb = require('mongodb');
 
 const URI = 'mongodb+srv://ngocminh:Minh1805701@cluster0.31wphgu.mongodb.net/?retryWrites=true&w=majority';
 // const URI = 'mongodb://localhost:27017/BillManage';
+const client = await mongodb.MongoClient.connect(URI);
+const conn = mongoose.createConnection().setClient(client);
 
 const connect = async (e) => {
     try {
@@ -15,7 +17,9 @@ const connect = async (e) => {
         //     useUnifiedTopology: true,
         //     serverApi: ServerApiVersion.v1,
         // });
-        mongodb.MongoClient.connect(URI);
+        // conn.getClient(); // MongoClient { ... }
+        conn.readyState; // 1, means 'CONNECTED'
+
         console.log('Connect successfully!!!');
     } catch (error) {
         console.log('Connect failure!!!');
