@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const SanPhamController = require('../app/controllers/SanPhamController');
+const SanPham = require('../app/models/SanPham');
 
 const sanphamRouter = require('./sanpham');
 const orderRouter = require('./order');
