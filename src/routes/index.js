@@ -7,30 +7,35 @@ const sanphamRouter = require('./sanpham');
 const orderRouter = require('./order');
 
 function route(app) {
-    app.use(router.get('/sanpham/list', (req, res, next) => {
-      SanPham.find({})
-          .then(sanphams => {
-              // console.log(sanphams);
-              return res.send({
-                  errCode: 200,
-                  sanpham: sanphams
-              })
-          })
-          .catch(err => {
-              return res.send({
-                  erCode: 500,
-                  err
-              })
-          })
-        })
-      );
+    // app.use(router.get('/sanpham/list', (req, res, next) => {
+    //   SanPham.find({})
+    //       .then(sanphams => {
+    //           // console.log(sanphams);
+    //           return res.send({
+    //               errCode: 200,
+    //               sanpham: sanphams
+    //           })
+    //       })
+    //       .catch(err => {
+    //           return res.send({
+    //               erCode: 500,
+    //               err
+    //           })
+    //       })
+    //     })
+    //   );
     app.use(sanphamRouter);
     app.use(orderRouter);
 
     app.use(router.get("/taikhoan", (req, res) => {
-      res.json({
-        taikhoan: "taikhoan!"
-      });
+      SanPham.find({})
+        .then(sanphams =>
+          res.json({
+            taikhoan: "taikhoan!",
+            sanpham: sanphams,
+          })
+        )
+        .catch(err => err);
     }));
 
     app.use('/', router.get("/", (req, res) => {
