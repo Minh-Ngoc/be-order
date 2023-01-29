@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config();
 
 const mongoose = require('mongoose');
 const ServerApiVersion  = require('mongoose');
@@ -19,4 +19,4 @@ const connect = async (e) => {
     }
 }
 
-module.exports = connect;
+module.exports = { connect } ;
