@@ -11,7 +11,7 @@ function route(app) {
       SanPham.find({})
           .then(sanphams => {
               // console.log(sanphams);
-              return res.json({
+              return res.json.stringify({
                   errCode: 200,
                   sanpham: sanphams
               })
