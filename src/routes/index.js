@@ -11,13 +11,13 @@ function route(app) {
       SanPham.find({})
           .then(sanphams => {
               // console.log(sanphams);
-              return res.status(200).send({
+              return res.send({
                   errCode: 200,
                   sanpham: sanphams
               })
           })
           .catch(err => {
-              return res.status(500).send({
+              return res.send({
                   erCode: 500,
                   err
               })
