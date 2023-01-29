@@ -18,25 +18,15 @@
 //     }
 // }
 // module.exports = { connect };
+const { MongoClient } = require('mongodb');
 
-const mongodb = require("mongodb");
 const URI = 'mongodb+srv://ngocminh:Minh1805701@cluster0.31wphgu.mongodb.net/?retryWrites=true&w=majority';
 
-exports.handler = async function (event, context) {
-  const client = await mongodb.connect(URI, { useUnifiedTopology: true })
+const connect = () => new Promise((resolve, reject) => {
+  const client = new MongoClient(URI, {useNewUrlParser:true})
 
-  try {
-    client.close()
-    return {
-      statusCode: 200,
-      headers: { "Content-Type": "application/json" },
-    }
-  } catch (err) {
-    console.log(err)
-    return {
-      statusCode: 200,
-      headers: { "Content-Type": "application/json" },
-      body: "Please try again later."
-    }
-  }
-}
+  resolve(client.connect());
+})
+
+module.exports = { connect };
+
