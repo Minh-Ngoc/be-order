@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "beautiful": "lint-staged",
-    "start": "NODE_ENV=development ./node_modules/.bin/netlify-lambda serve src",
-    "build": "NODE_ENV=production ./node_modules/.bin/netlify-lambda build src",
+    "start": "nodemon --inspect src/index.js",
     "start:dev": "nodemon --inspect src/index.js",
     "watch": "node-sass --watch src/resources/scss/ --output src/public/css/",
     "test": "echo \"Error: no test specified\" && exit 1"

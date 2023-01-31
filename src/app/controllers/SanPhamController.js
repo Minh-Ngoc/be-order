@@ -8,7 +8,7 @@ class SanPhamController {
         sanpham
             .save()
             .then(() => {
-                return res.json({
+                return res.status(200).send({
                     errCode: 201,
                 })
             })

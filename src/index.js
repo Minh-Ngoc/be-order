@@ -1,10 +1,7 @@
-
 const express = require('express');
 // const morgan = require('morgan');
 const methodOverride = require('method-override');
 const cors = require('cors');
-
-const serverless = require("serverless-http");
 
 const route = require('./routes');
 const db = require('./config/db');
@@ -15,7 +12,7 @@ app.use(
     cors()
   );
 
-// app.use(express);
+app.use(express.json());
 // Connect to DB
 
 db.connect();
@@ -29,18 +26,17 @@ app.use(function (req, res, next) {
     next();
 });
 
-// const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3001;
 
 app.use(
     express.urlencoded({
-        extended: false,
+        extended: true,
     }),
 );
-
 app.use(methodOverride('_method'));
 
 route(app);
 
-module.exports = app;
-
-module.exports.handler = serverless(app);
+app.listen(port, () =>
+    console.log(`App listening at http://localhost:${port}`),
+);
